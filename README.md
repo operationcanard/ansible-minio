@@ -18,6 +18,19 @@ None.
 
 Available variables are listed below, along with default values (see `defaults/main.yml`):
 
+Minio installation in an environment without Internet access
+
+```yaml
+minio_install_offline: true
+```
+
+Minio binaries path on local host when installing offline
+
+```yaml
+minio_server_local_bin: minio
+minio_client_local_bin: mc
+```
+
 ```yaml
 minio_server_bin: /usr/local/bin/minio
 minio_client_bin: /usr/local/bin/mc
@@ -124,9 +137,23 @@ None.
   hosts: all
   become: yes
   roles:
-    - { role: atosatto.minio }
+    - { role: ansible-minio }
   vars:
-    minio_server_datadirs: [ "/minio-test" ]
+    minio_server_addr: ":9199"
+
+    minio_server_datadirs:
+      - /data1
+      - /data2
+      - /data3
+      - /data4
+    
+    minio_server_cluster_nodes:
+      - "https://cv-{11...14}.cedia.systems.preligens.tech/data{1...4}"
+    
+    # Switches to enable/disable the Minio server and/or Minio client installation.
+    minio_install_server: true
+    minio_install_client: false
+
 ```
 
 ## Changelog

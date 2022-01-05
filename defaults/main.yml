@@ -1,4 +1,10 @@
 ---
+# Minio installation in an environment without Internet access
+minio_install_offline: true
+
+# Minio binaries path on local host when installing offline
+minio_server_local_bin: minio
+minio_client_local_bin: mc
 
 # Minio binaries path
 minio_server_bin: /usr/local/bin/minio
@@ -30,7 +36,8 @@ minio_server_cluster_nodes: [ ]
 minio_server_env_extra: ""
 
 # Additional Minio server CLI options
-minio_server_opts: ""
+# `anonymous` option is added by default to avoid sentive information logging
+minio_server_opts: "--anonymous"
 
 # Minio access and secret keys
 minio_access_key: ""
@@ -38,4 +45,4 @@ minio_secret_key: ""
 
 # Switches to enable/disable the Minio server and/or Minio client installation.
 minio_install_server: true
-minio_install_client: true
+minio_install_client: false

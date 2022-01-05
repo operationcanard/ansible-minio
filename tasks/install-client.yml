@@ -18,6 +18,20 @@
   set_fact:
     _minio_client_checksum: "{{ lookup('url', _minio_client_download_url + '.sha256sum').split(' ')[0] }}"
 
+- name: Make sure destination dir exists
+  file:
+    path: "{{ minio_client_bin | dirname }}"
+    state: directory
+
+- name: Copy the Minio client
+  copy:
+    src: "{{ minio_client_local_bin }}"
+    dest: "{{ minio_client_bin }}"
+    owner: "root"
+    group: "root"
+    mode: 0755
+  when: minio_install_offline
+
 - name: Download the Minio client
   get_url:
     url: "{{ _minio_client_download_url }}"
@@ -30,3 +44,5 @@
   until: _download_client is succeeded
   retries: 5
   delay: 2
+  when: not minio_install_offline
+
