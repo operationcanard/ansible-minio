@@ -148,7 +148,7 @@ None.
       - /data4
     
     minio_server_cluster_nodes:
-      - "https://cv-{11...14}.cedia.systems.preligens.tech/data{1...4}"
+      - "https://cv-{11...14}.storage.host/data{1...4}"
     
     # Switches to enable/disable the Minio server and/or Minio client installation.
     minio_install_server: true
