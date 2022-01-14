@@ -1,6 +1,6 @@
 ---
 # Minio installation in an environment without Internet access
-minio_install_offline: true
+minio_install_offline: false
 
 # Minio binaries path on local host when installing offline
 minio_server_local_bin: minio
@@ -22,7 +22,7 @@ minio_group: minio
 minio_server_envfile: /etc/default/minio
 
 # Minio server listen address
-minio_server_addr: ":9091"
+minio_server_addr: ":9000"
 
 # Minio server data directories
 minio_server_datadirs:
@@ -37,11 +37,11 @@ minio_server_env_extra: ""
 
 # Additional Minio server CLI options
 # `anonymous` option is added by default to avoid sentive information logging
-minio_server_opts: "--anonymous"
+minio_server_opts: "--anonymous --console-address ':9001'"
 
 # Minio access and secret keys
-minio_access_key: ""
-minio_secret_key: ""
+minio_access_key: "minioadmin"
+minio_secret_key: "minioadmin"
 
 # Switches to enable/disable the Minio server and/or Minio client installation.
 minio_install_server: true
